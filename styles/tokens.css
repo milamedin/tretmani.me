@@ -1,0 +1,39 @@
+:root {
+  --bg-primary: #FAF7F2;
+  --bg-card: #FFFFFF;
+  --bg-soft: #F4EFE8;
+
+  --text-primary: #2A2520;
+  --text-secondary: #6B5D54;
+  --text-muted: #9B8D82;
+
+  --accent: #C9A0A0;
+  --accent-hover: #B08585;
+  --accent-soft: #E8D4D4;
+  --accent-deep: #8B5E5E;
+
+  --border: #E8DFD6;
+  --border-soft: #F0E9DF;
+
+  --shadow-sm: 0 1px 3px rgba(139, 94, 94, 0.04);
+  --shadow-md: 0 4px 12px rgba(139, 94, 94, 0.08);
+  --shadow-lg: 0 12px 32px rgba(139, 94, 94, 0.12);
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-pill: 999px;
+
+  --font-display: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --container: 1200px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+  --space-7: 64px;
+  --space-8: 96px;
+}
