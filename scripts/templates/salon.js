@@ -3,6 +3,37 @@ import { page, salonCard } from './_shared.js';
 
 const DAYS_ME = ['Ponedjeljak', 'Utorak', 'Srijeda', 'Četvrtak', 'Petak', 'Subota', 'Nedjelja'];
 
+function renderServiceGroups(services) {
+  // Group by `group` field. If no group set, fall back to single "Usluge" group.
+  const groups = new Map();
+  for (const svc of services) {
+    const key = svc.group || '';
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(svc);
+  }
+  const hasMultipleGroups = groups.size > 1 || (groups.size === 1 && [...groups.keys()][0] !== '');
+
+  return [...groups.entries()].map(([groupName, items]) => {
+    const header = hasMultipleGroups && groupName ? `<h4>${e(groupName)}</h4>` : '';
+    const rows = items.map(svc => {
+      const name = svc.name || svc;
+      const desc = svc.description ? `<span class="pricelist__desc">${e(svc.description)}</span>` : '';
+      const priceVal = svc.price;
+      let priceHtml = '';
+      if (priceVal != null && priceVal !== '') {
+        const priceStr = String(priceVal).trim();
+        const formatted = /^\d/.test(priceStr) ? `€${priceStr}` : priceStr;
+        const prefix = svc.from ? `<span class="pricelist__from">od</span> ` : '';
+        priceHtml = `<span class="pricelist__price">${prefix}${e(formatted)}</span>`;
+      } else {
+        priceHtml = `<span class="pricelist__price pricelist__price--ask">cijena na upit</span>`;
+      }
+      return `<div class="pricelist__row"><div><span class="pricelist__name">${e(name)}</span>${desc}</div>${priceHtml}</div>`;
+    }).join('');
+    return `<div class="pricelist__group">${header}${rows}</div>`;
+  }).join('');
+}
+
 export function buildSalonPage({ salon, categories, cities, related = [] }) {
   const cover = salon.cover_image || 'https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?w=1200&q=80&auto=format&fit=crop';
 
@@ -104,16 +135,9 @@ export function buildSalonPage({ salon, categories, cities, related = [] }) {
 
         ${services.length ? `
         <section class="block">
-          <h2 class="block__title">Usluge</h2>
+          <h2 class="block__title">Usluge i cijenovnik</h2>
           <div class="pricelist">
-            <div class="pricelist__group">
-              ${services.map(svc => {
-                const name = svc.name || svc;
-                const price = svc.price ? `<span class="pricelist__price">€${e(svc.price)}</span>` : '';
-                const desc = svc.description ? `<span class="pricelist__desc">${e(svc.description)}</span>` : '';
-                return `<div class="pricelist__row"><div><span class="pricelist__name">${e(name)}</span>${desc}</div>${price}</div>`;
-              }).join('')}
-            </div>
+            ${renderServiceGroups(services)}
           </div>
         </section>` : ''}
 

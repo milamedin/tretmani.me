@@ -1,4 +1,5 @@
 // Supabase REST client for build time (Node).
+import { enrichSalonServices } from './demo-services.js';
 
 export function makeClient({ url, key }) {
   const headers = {
@@ -38,5 +39,5 @@ export async function fetchAllData(client) {
     client.cities(),
     client.allSalons(),
   ]);
-  return { categories, cities, salons };
+  return { categories, cities, salons: enrichSalonServices(salons) };
 }
