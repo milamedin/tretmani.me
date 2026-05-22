@@ -1,11 +1,14 @@
 // tretmani.me — homepage frontend logic
 // Hydrates salon grid from Supabase, wires filter chips + city + sort selects.
+// Re-renders when language changes via window.i18n.
 
 const state = {
   category: '',
   city: '',
   sort: 'featured',
   limit: 24,
+  cache: null,
+  count: 0,
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -13,6 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
   bindCategoryChips();
   bindFilters();
   loadSalons();
+});
+
+document.addEventListener('i18n:changed', () => {
+  if (state.cache) renderGrid(state.cache);
+  updateCount(state.count);
 });
 
 function bindCategoryChips() {
@@ -41,10 +49,10 @@ function bindFilters() {
 
 async function loadSalons() {
   const grid = document.getElementById('salons-grid');
-  const countEl = document.getElementById('result-count');
   if (!grid) return;
 
-  grid.innerHTML = '<div class="salons__loading">Učitavam salone…</div>';
+  const loadingMsg = t('filter.loading', 'Učitavam salone…');
+  grid.innerHTML = `<div class="salons__loading">${escapeHtml(loadingMsg)}</div>`;
 
   try {
     const [salons, total] = await Promise.all([
@@ -52,21 +60,37 @@ async function loadSalons() {
       window.Tretmani.salonCount({ category: state.category, city: state.city }),
     ]);
 
-    if (countEl) {
-      countEl.innerHTML = `<strong>${total}</strong><span>salon${total === 1 ? '' : 'a'} ${total > 0 ? 'pronađeno' : ''}</span>`;
-    }
+    state.cache = salons;
+    state.count = total;
+
+    updateCount(total);
 
     if (!salons || salons.length === 0) {
-      grid.innerHTML = '<div class="salons__empty">Nema salona za ove filtere.<br />Promijeni grad ili kategoriju.</div>';
+      const empty = t('filter.empty', 'Nema salona za ove filtere. Promijeni grad ili kategoriju.');
+      grid.innerHTML = `<div class="salons__empty">${escapeHtml(empty)}</div>`;
       return;
     }
 
-    grid.innerHTML = salons.map(renderSalonCard).join('');
-    bindPhoneButtons();
+    renderGrid(salons);
   } catch (err) {
     console.error('Failed to load salons:', err);
-    grid.innerHTML = '<div class="salons__empty">Greška pri učitavanju. Probaj refresh.</div>';
+    grid.innerHTML = `<div class="salons__empty">${escapeHtml(t('filter.empty', 'Greška pri učitavanju.'))}</div>`;
   }
+}
+
+function renderGrid(salons) {
+  const grid = document.getElementById('salons-grid');
+  if (!grid) return;
+  grid.innerHTML = salons.map(renderSalonCard).join('');
+  bindPhoneButtons();
+}
+
+function updateCount(total) {
+  const el = document.getElementById('result-count');
+  if (!el) return;
+  const labelKey = total === 1 ? 'explorer.count_label_singular' : 'explorer.count_label';
+  const label = t(labelKey, total === 1 ? 'salon pronađen' : 'salona pronađeno');
+  el.innerHTML = `<strong>${total}</strong><span>${escapeHtml(label)}</span>`;
 }
 
 function bindPhoneButtons() {
@@ -92,17 +116,20 @@ function renderSalonCard(s) {
     ? s.services.slice(0, 3).map(svc => svc.name || svc).filter(Boolean)
     : []);
   const badge = s.is_featured
-    ? '<span class="salon__badge">★ Featured</span>'
-    : (s.is_verified ? '<span class="salon__badge salon__badge--new">Novo</span>' : '');
+    ? `<span class="salon__badge">★ ${escapeHtml(t('card.featured', 'Izdvojeno'))}</span>`
+    : (s.is_verified ? `<span class="salon__badge salon__badge--new">${escapeHtml(t('card.new', 'Novo'))}</span>` : '');
   const priceFrom = s.price_range || '';
   const ratingNum = typeof s.rating === 'number' ? s.rating.toFixed(1) : (s.rating || '—');
+  const fromLabel = t('card.from', 'od');
+  const phoneLabel = t('card.show_phone', 'Prikaži broj');
+  const saveLabel = t('card.save', 'Sačuvaj');
 
   return `
     <a href="/salon/${escapeHtml(s.slug)}/" class="salon" data-salon-id="${s.id}">
       <div class="salon__image">
         <img src="${escapeHtml(cover)}" alt="${escapeHtml(s.name)}" loading="lazy" />
         ${badge}
-        <span class="salon__heart" role="button" aria-label="Sačuvaj">♡</span>
+        <span class="salon__heart" role="button" aria-label="${escapeHtml(saveLabel)}">♡</span>
       </div>
       <div class="salon__body">
         <div class="salon__meta">
@@ -113,12 +140,16 @@ function renderSalonCard(s) {
         <div class="salon__location">${escapeHtml(s.city_name || '')}</div>
         ${services.length ? `<div class="salon__services">${services.map(svc => `<span>${escapeHtml(svc)}</span>`).join('')}</div>` : ''}
         <div class="salon__footer">
-          <div class="salon__price">${priceFrom ? `od <strong>${escapeHtml(priceFrom)}</strong>` : ''}</div>
-          <button class="salon__phone-btn" data-salon-id="${s.id}" data-phone="${escapeHtml(s.phone || '')}">Prikaži broj</button>
+          <div class="salon__price">${priceFrom ? `${escapeHtml(fromLabel)} <strong>${escapeHtml(priceFrom)}</strong>` : ''}</div>
+          <button class="salon__phone-btn" data-salon-id="${s.id}" data-phone="${escapeHtml(s.phone || '')}">${escapeHtml(phoneLabel)}</button>
         </div>
       </div>
     </a>
   `;
+}
+
+function t(key, fallback) {
+  return window.i18n ? window.i18n.t(key) : (fallback || key);
 }
 
 function escapeHtml(str) {

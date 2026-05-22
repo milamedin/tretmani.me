@@ -44,20 +44,38 @@ button { font-family: var(--font-body); }
 
 /* ===== EDITORIAL LABEL ===== */
 .eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
+  display: inline-block;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--accent-wine);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: none;
+  font-size: 17px;
 }
-.eyebrow::before {
-  content: '';
-  width: 28px;
-  height: 1px;
-  background: var(--accent-gold);
+
+/* ===== LANGUAGE TOGGLE ===== */
+.lang-toggle {
+  width: 42px;
+  height: 36px;
+  border-radius: var(--radius-pill);
+  background-color: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition: all 0.2s var(--ease-out);
+  font-family: var(--font-body);
+}
+.lang-toggle:hover {
+  border-color: var(--text-primary);
+  background-color: var(--bg-card);
 }
 
 /* ============ HEADER ============ */
@@ -175,24 +193,17 @@ button { font-family: var(--font-body); }
 .hero__content { max-width: 580px; }
 
 .hero__eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
+  display: inline-block;
   padding: 0;
   background: transparent;
   border: none;
   color: var(--accent-wine);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
   margin-bottom: var(--space-4);
-}
-.hero__eyebrow::before {
-  content: '';
-  width: 36px;
-  height: 1px;
-  background: var(--accent-gold);
 }
 
 .hero__title {
@@ -834,21 +845,14 @@ button { font-family: var(--font-body); }
 .cta-salons__content { padding: var(--space-7) var(--space-6); }
 
 .cta-salons__eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
+  display: inline-block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 18px;
   color: var(--accent-gold);
   margin-bottom: var(--space-3);
-  font-weight: 600;
-}
-.cta-salons__eyebrow::before {
-  content: '';
-  width: 32px;
-  height: 1px;
-  background: var(--accent-gold);
+  font-weight: 500;
+  letter-spacing: 0.02em;
 }
 
 .cta-salons__title {

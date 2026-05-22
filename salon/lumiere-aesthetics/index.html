@@ -60,10 +60,8 @@
         tretmani<span class="logo__dot">.</span><span class="logo__suffix">ME</span>
       </a>
       <nav class="nav">
-        <a href="/saloni" class="nav__link">Saloni</a>
-        <a href="/kategorije" class="nav__link">Kategorije</a>
-        <a href="/gradovi" class="nav__link">Gradovi</a>
-        <a href="/za-salone" class="nav__link nav__cta">Za salone</a>
+        <button id="lang-toggle" class="lang-toggle" aria-label="Promijeni jezik">EN</button>
+        <a href="/#cta-salons" class="nav__link nav__cta" data-i18n="nav.za_salone">Za salone</a>
       </nav>
     </div>
   </header>
@@ -521,6 +519,7 @@
     </div>
   </div>
 
+  <script src="/js/i18n.js"></script>
   <script>
     document.getElementById('phone-reveal')?.addEventListener('click', (e) => {
       e.currentTarget.textContent = '📞 +382 67 123 456';
@@ -576,9 +575,17 @@
         });
       });
 
-      btnPrev.addEventListener('click', () => show(current - 1));
-      btnNext.addEventListener('click', () => show(current + 1));
-      btnClose.addEventListener('click', close);
+      btnPrev.addEventListener('click', (e) => { e.stopPropagation(); show(current - 1); });
+      btnNext.addEventListener('click', (e) => { e.stopPropagation(); show(current + 1); });
+      btnClose.addEventListener('click', (e) => { e.stopPropagation(); close(); });
+
+      // Click image → advance to next (loops back to first at end)
+      lbImg.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const next = (current + 1) % allSources.length;
+        show(next);
+      });
+      lbImg.style.cursor = 'pointer';
 
       lb.addEventListener('click', (e) => {
         if (e.target === lb || e.target.classList.contains('lightbox__inner') || e.target.classList.contains('lightbox__image-wrap')) close();

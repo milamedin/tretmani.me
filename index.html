@@ -12,7 +12,6 @@
   <meta property="og:locale" content="sr_ME" />
 
   <link rel="stylesheet" href="/styles/main.css" />
-  <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg" />
 </head>
 <body>
 
@@ -22,10 +21,8 @@
         tretmani<span class="logo__dot">.</span><span class="logo__suffix">ME</span>
       </a>
       <nav class="nav">
-        <a href="#explorer" class="nav__link">Saloni</a>
-        <a href="/kategorije" class="nav__link">Kategorije</a>
-        <a href="/gradovi" class="nav__link">Gradovi</a>
-        <a href="/za-salone" class="nav__link nav__cta">Za salone</a>
+        <button id="lang-toggle" class="lang-toggle" aria-label="Promijeni jezik">EN</button>
+        <a href="#cta-salons" class="nav__link nav__cta" data-i18n="nav.za_salone">Za salone</a>
       </nav>
     </div>
   </header>
@@ -36,26 +33,26 @@
     <section class="hero">
       <div class="container hero__grid">
         <div class="hero__content">
-          <span class="hero__eyebrow">Svi saloni Crne Gore</span>
+          <span class="hero__eyebrow" data-i18n="hero.eyebrow">Svi saloni Crne Gore</span>
           <h1 class="hero__title">
-            Tvoj <em>ritual ljepote</em><br />počinje ovdje.
+            <span data-i18n="hero.title_pre">Tvoj </span><em data-i18n="hero.title_em">ritual ljepote</em><br /><span data-i18n="hero.title_post">počinje ovdje.</span>
           </h1>
-          <p class="hero__subtitle">
+          <p class="hero__subtitle" data-i18n="hero.subtitle">
             Najbolji frizerski, kozmetički i estetski saloni Crne Gore na jednom mjestu. Pretraži, uporedi, i pozovi direktno.
           </p>
 
           <div class="hero__stats">
             <div class="stat">
               <span class="stat__num">50<em>+</em></span>
-              <span class="stat__label">verifikovanih salona</span>
+              <span class="stat__label" data-i18n="hero.stat_salons">verifikovanih salona</span>
             </div>
             <div class="stat">
               <span class="stat__num">12</span>
-              <span class="stat__label">gradova</span>
+              <span class="stat__label" data-i18n="hero.stat_cities">gradova</span>
             </div>
             <div class="stat">
               <span class="stat__num">4.9<em>★</em></span>
-              <span class="stat__label">prosječna ocjena</span>
+              <span class="stat__label" data-i18n="hero.stat_rating">prosječna ocjena</span>
             </div>
           </div>
         </div>
@@ -70,8 +67,8 @@
           <div class="hero__badge">
             <span class="hero__badge-star">N°1</span>
             <div>
-              <strong>Beauty</strong>
-              <span>platforma Crne Gore</span>
+              <strong data-i18n="hero.badge_main">Beauty</strong>
+              <span data-i18n="hero.badge_sub">platforma Crne Gore</span>
             </div>
           </div>
           <div class="hero__deco hero__deco--1"></div>
@@ -86,27 +83,28 @@
 
         <div class="explorer__header">
           <div class="explorer__heading">
-            <span class="eyebrow">Naša kolekcija</span>
-            <h2>Pronađi <em>svoj salon</em></h2>
-            <p>Filtriraj po gradu, kategoriji i ocjeni.</p>
+            <span class="eyebrow" data-i18n="explorer.eyebrow">Naša kolekcija</span>
+            <h2><span data-i18n="explorer.title_pre">Pronađi </span><em data-i18n="explorer.title_em">svoj salon</em></h2>
+            <p data-i18n="explorer.subtitle">Filtriraj po gradu, kategoriji i ocjeni.</p>
           </div>
           <div class="explorer__count" id="result-count">
-            <strong>—</strong><span>salona dostupno</span>
+            <strong>—</strong><span data-i18n="explorer.count_label">salona pronađeno</span>
           </div>
         </div>
 
         <div class="filters">
           <div class="filter-chips" id="category-chips">
-            <button class="chip chip--active" data-category="">Sve kategorije</button>
-            <button class="chip" data-category="frizerski-saloni">✂ Frizerski</button>
-            <button class="chip" data-category="kozmeticki-saloni">✦ Kozmetički</button>
-            <button class="chip" data-category="estetski-tretmani">◈ Estetski</button>
-            <button class="chip" data-category="masaze-wellness">❋ Masaže & wellness</button>
+            <button class="chip chip--active" data-category="" data-i18n="filter.all_categories">Sve kategorije</button>
+            <button class="chip" data-category="frizerski-saloni" data-i18n="filter.frizerski">✂ Frizerski</button>
+            <button class="chip" data-category="kozmeticki-saloni" data-i18n="filter.kozmeticki">✦ Kozmetički</button>
+            <button class="chip" data-category="estetski-tretmani" data-i18n="filter.estetski">◈ Estetski</button>
+            <button class="chip" data-category="masaze-wellness" data-i18n="filter.masaze">❋ Masaže</button>
+            <button class="chip" data-category="sminka" data-i18n="filter.sminka">✿ Šminka</button>
           </div>
 
           <div class="filter-select">
             <select id="city-select" aria-label="Grad">
-              <option value="">Sve gradove</option>
+              <option value="" data-i18n="filter.all_cities">Sve gradove</option>
               <option value="podgorica">Podgorica</option>
               <option value="budva">Budva</option>
               <option value="bar">Bar</option>
@@ -121,19 +119,19 @@
 
           <div class="filter-select">
             <select id="sort-select" aria-label="Sortiraj">
-              <option value="featured">Izdvojeni prvo</option>
-              <option value="rating">Najbolja ocjena</option>
-              <option value="newest">Najnovije</option>
+              <option value="featured" data-i18n="filter.sort_featured">Izdvojeni prvo</option>
+              <option value="rating" data-i18n="filter.sort_rating">Najbolja ocjena</option>
+              <option value="newest" data-i18n="filter.sort_newest">Najnovije</option>
             </select>
           </div>
         </div>
 
         <div class="salons" id="salons-grid">
-          <div class="salons__loading">Učitavam salone…</div>
+          <div class="salons__loading" data-i18n="filter.loading">Učitavam salone…</div>
         </div>
 
         <div class="load-more" id="load-more" hidden>
-          <button class="load-more__btn">Učitaj još salona</button>
+          <button class="load-more__btn" data-i18n="filter.load_more">Učitaj još salona</button>
         </div>
 
       </div>
@@ -144,9 +142,9 @@
       <div class="container">
         <div class="section__header section__header--center">
           <div>
-            <span class="eyebrow">Zašto tretmani.me</span>
-            <h2 class="section__title">Standard <em>nove generacije</em></h2>
-            <p class="section__subtitle" style="margin: 0 auto;">Kompletan vodič kroz beauty industriju u Crnoj Gori.</p>
+            <span class="eyebrow" data-i18n="why.eyebrow">Zašto tretmani.me</span>
+            <h2 class="section__title"><span data-i18n="why.title_pre">Standard </span><em data-i18n="why.title_em">nove generacije</em></h2>
+            <p class="section__subtitle" style="margin: 0 auto;" data-i18n="why.subtitle">Kompletan vodič kroz beauty industriju u Crnoj Gori.</p>
           </div>
         </div>
 
@@ -154,50 +152,50 @@
           <div class="why__step">
             <span class="why__num">01</span>
             <div class="why__icon">✓</div>
-            <h3 class="why__title">Verifikovano</h3>
-            <p class="why__desc">Svaki salon prolazi ručnu provjeru prije listanja.</p>
+            <h3 class="why__title" data-i18n="why.1.title">Verifikovano</h3>
+            <p class="why__desc" data-i18n="why.1.desc">Svaki salon prolazi ručnu provjeru prije listanja.</p>
           </div>
           <div class="why__step">
             <span class="why__num">02</span>
             <div class="why__icon">◌</div>
-            <h3 class="why__title">Direktan kontakt</h3>
-            <p class="why__desc">Bez registracije, bez aplikacija — pozoveš jednim klikom.</p>
+            <h3 class="why__title" data-i18n="why.2.title">Direktan kontakt</h3>
+            <p class="why__desc" data-i18n="why.2.desc">Bez registracije, bez aplikacija — pozoveš jednim klikom.</p>
           </div>
           <div class="why__step">
             <span class="why__num">03</span>
             <div class="why__icon">✦</div>
-            <h3 class="why__title">Cijela Crna Gora</h3>
-            <p class="why__desc">Od Podgorice do Herceg Novog — 12 gradova, sve kategorije.</p>
+            <h3 class="why__title" data-i18n="why.3.title">Cijela Crna Gora</h3>
+            <p class="why__desc" data-i18n="why.3.desc">Od Podgorice do Herceg Novog — 12 gradova, sve kategorije.</p>
           </div>
           <div class="why__step">
             <span class="why__num">04</span>
             <div class="why__icon">♡</div>
-            <h3 class="why__title">Iskreni recenzije</h3>
-            <p class="why__desc">Ocjene od ljudi koji su zaista bili na tretmanu.</p>
+            <h3 class="why__title" data-i18n="why.4.title">Iskrene recenzije</h3>
+            <p class="why__desc" data-i18n="why.4.desc">Ocjene od ljudi koji su zaista bili na tretmanu.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ============ CTA FOR SALONS ============ -->
-    <section class="section">
+    <section class="section" id="cta-salons">
       <div class="container">
         <div class="cta-salons">
           <div class="cta-salons__visual">
             <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=900&q=80&auto=format&fit=crop" alt="" />
           </div>
           <div class="cta-salons__content">
-            <div class="cta-salons__eyebrow">Za vlasnike salona</div>
-            <h2 class="cta-salons__title">Tvoj salon zaslužuje <em>vrhunsku prezentaciju</em>.</h2>
-            <p class="cta-salons__desc">
+            <div class="cta-salons__eyebrow" data-i18n="cta.eyebrow">Za vlasnike salona</div>
+            <h2 class="cta-salons__title"><span data-i18n="cta.title_pre">Tvoj salon zaslužuje </span><em data-i18n="cta.title_em">vrhunsku prezentaciju</em><span data-i18n="cta.title_post">.</span></h2>
+            <p class="cta-salons__desc" data-i18n="cta.desc">
               Listanje uz najbolje salone Crne Gore. Profesionalne fotografije, mjesečni izvještaj o pregledima i pozivima.
             </p>
             <ul class="cta-salons__perks">
-              <li>Profesionalna fotografija uključena</li>
-              <li>Mjesečni izvještaj o pregledima i pozivima</li>
-              <li>Bez ugovora, bez provizije po klijentu</li>
+              <li data-i18n="cta.perk1">Profesionalna fotografija uključena</li>
+              <li data-i18n="cta.perk2">Mjesečni izvještaj o pregledima i pozivima</li>
+              <li data-i18n="cta.perk3">Bez ugovora, bez provizije po klijentu</li>
             </ul>
-            <a href="/za-salone" class="cta-salons__btn">Saznaj više →</a>
+            <a href="mailto:info@tretmani.me" class="cta-salons__btn" data-i18n="cta.btn">Saznaj više →</a>
           </div>
         </div>
       </div>
@@ -212,7 +210,7 @@
           <a href="/" class="logo">
             tretmani<span class="logo__dot">.</span><span class="logo__suffix">ME</span>
           </a>
-          <p>Svi saloni Crne Gore na jednom mjestu. Pronađi pravo mjesto za sebe.</p>
+          <p data-i18n="footer.tagline">Svi saloni Crne Gore na jednom mjestu. Pronađi pravo mjesto za sebe.</p>
           <div class="footer__social">
             <a href="#" aria-label="Instagram">IG</a>
             <a href="#" aria-label="Facebook">FB</a>
@@ -220,36 +218,37 @@
           </div>
         </div>
         <div class="footer__col">
-          <h4>Kategorije</h4>
+          <h4 data-i18n="footer.categories">Kategorije</h4>
           <ul>
-            <li><a href="/kategorija/frizerski-saloni">Frizerski saloni</a></li>
-            <li><a href="/kategorija/kozmeticki-saloni">Kozmetički saloni</a></li>
-            <li><a href="/kategorija/estetski-tretmani">Estetski tretmani</a></li>
-            <li><a href="/kategorija/masaze-wellness">Masaže i wellness</a></li>
+            <li><a href="#explorer" data-i18n="footer.cat_frizerski">Frizerski saloni</a></li>
+            <li><a href="#explorer" data-i18n="footer.cat_kozmeticki">Kozmetički saloni</a></li>
+            <li><a href="#explorer" data-i18n="footer.cat_estetski">Estetski tretmani</a></li>
+            <li><a href="#explorer" data-i18n="footer.cat_masaze">Masaže i wellness</a></li>
+            <li><a href="#explorer" data-i18n="footer.cat_sminka">Šminka</a></li>
           </ul>
         </div>
         <div class="footer__col">
-          <h4>Gradovi</h4>
+          <h4 data-i18n="footer.cities">Gradovi</h4>
           <ul>
-            <li><a href="/grad/podgorica">Podgorica</a></li>
-            <li><a href="/grad/budva">Budva</a></li>
-            <li><a href="/grad/bar">Bar</a></li>
-            <li><a href="/grad/kotor">Kotor</a></li>
-            <li><a href="/grad/tivat">Tivat</a></li>
+            <li><a href="#explorer">Podgorica</a></li>
+            <li><a href="#explorer">Budva</a></li>
+            <li><a href="#explorer">Bar</a></li>
+            <li><a href="#explorer">Kotor</a></li>
+            <li><a href="#explorer">Tivat</a></li>
           </ul>
         </div>
         <div class="footer__col">
-          <h4>Info</h4>
+          <h4 data-i18n="footer.info">Informacije</h4>
           <ul>
-            <li><a href="/za-salone">Za salone</a></li>
-            <li><a href="/kontakt">Kontakt</a></li>
-            <li><a href="/uslovi">Uslovi korišćenja</a></li>
-            <li><a href="/privatnost">Privatnost</a></li>
+            <li><a href="#cta-salons" data-i18n="footer.for_salons">Za salone</a></li>
+            <li><a href="mailto:info@tretmani.me" data-i18n="footer.contact">Kontakt</a></li>
+            <li><a href="#" data-i18n="footer.terms">Uslovi korišćenja</a></li>
+            <li><a href="#" data-i18n="footer.privacy">Privatnost</a></li>
           </ul>
         </div>
       </div>
       <div class="footer__bottom">
-        <span>© 2026 tretmani.me · Sva prava zadržana</span>
+        <span>© 2026 tretmani.me · <span data-i18n="footer.rights">Sva prava zadržana</span></span>
         <span>Crna Gora · ME</span>
       </div>
     </div>
@@ -257,6 +256,7 @@
 
   <script src="/js/config.js"></script>
   <script src="/js/supabase.js"></script>
+  <script src="/js/i18n.js"></script>
   <script src="/js/main.js"></script>
 </body>
 </html>
