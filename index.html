@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>tretmani.me — Saloni i estetski tretmani u Crnoj Gori</title>
-  <meta name="description" content="Direktorij vrhunskih frizerskih, kozmetičkih i estetskih salona u Crnoj Gori. Pronađi salon u svom gradu i pozovi direktno." />
+  <title>tretmani.me — Svi saloni Crne Gore na jednom mjestu</title>
+  <meta name="description" content="Svi frizerski, kozmetički i estetski saloni Crne Gore na jednom mjestu. Pretraži po gradu i kategoriji, vidi cijene i fotke, pozovi direktno." />
 
-  <meta property="og:title" content="tretmani.me — Saloni u Crnoj Gori" />
-  <meta property="og:description" content="Direktorij vrhunskih frizerskih, kozmetičkih i estetskih salona u Crnoj Gori." />
+  <meta property="og:title" content="tretmani.me — Svi saloni Crne Gore na jednom mjestu" />
+  <meta property="og:description" content="Svi frizerski, kozmetički i estetski saloni Crne Gore na jednom mjestu." />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="sr_ME" />
 
@@ -22,7 +22,7 @@
         tretmani<span class="logo__dot">.</span><span class="logo__suffix">ME</span>
       </a>
       <nav class="nav">
-        <a href="/saloni" class="nav__link">Saloni</a>
+        <a href="#explorer" class="nav__link">Saloni</a>
         <a href="/kategorije" class="nav__link">Kategorije</a>
         <a href="/gradovi" class="nav__link">Gradovi</a>
         <a href="/za-salone" class="nav__link nav__cta">Za salone</a>
@@ -36,54 +36,42 @@
     <section class="hero">
       <div class="container hero__grid">
         <div class="hero__content">
-          <span class="hero__eyebrow">✦ Crna Gora · Verifikovan direktorij</span>
+          <span class="hero__eyebrow">Svi saloni Crne Gore</span>
           <h1 class="hero__title">
-            Pronađi <em>savršen salon</em> za sebe.
+            Tvoj <em>ritual ljepote</em><br />počinje ovdje.
           </h1>
           <p class="hero__subtitle">
-            Frizerski, kozmetički i estetski saloni u Crnoj Gori — fotografije, usluge i direktan kontakt na jednom mjestu.
+            Najbolji frizerski, kozmetički i estetski saloni Crne Gore na jednom mjestu. Pretraži, uporedi, i pozovi direktno.
           </p>
-
-          <div class="search">
-            <div class="search__field">
-              <span class="search__label">Šta tražiš?</span>
-              <span class="search__value">Sve usluge</span>
-            </div>
-            <div class="search__field">
-              <span class="search__label">Grad</span>
-              <span class="search__value">Cijela Crna Gora</span>
-            </div>
-            <button class="search__btn">Pronađi</button>
-          </div>
 
           <div class="hero__stats">
             <div class="stat">
-              <span class="stat__num">50+</span>
-              <span class="stat__label">salona</span>
+              <span class="stat__num">50<em>+</em></span>
+              <span class="stat__label">verifikovanih salona</span>
             </div>
             <div class="stat">
               <span class="stat__num">12</span>
               <span class="stat__label">gradova</span>
             </div>
             <div class="stat">
-              <span class="stat__num">4</span>
-              <span class="stat__label">kategorije</span>
+              <span class="stat__num">4.9<em>★</em></span>
+              <span class="stat__label">prosječna ocjena</span>
             </div>
           </div>
         </div>
 
         <div class="hero__visual">
           <div class="hero__image hero__image--main">
-            <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=900&q=80&auto=format&fit=crop" alt="Beauty tretman" />
+            <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=900&q=80&auto=format&fit=crop" alt="Beauty editorial" />
           </div>
           <div class="hero__image hero__image--accent">
             <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&q=80&auto=format&fit=crop" alt="Kozmetika" />
           </div>
           <div class="hero__badge">
-            <span class="hero__badge-star">★</span>
+            <span class="hero__badge-star">N°1</span>
             <div>
-              <strong>4.9</strong>
-              <span>prosječna ocjena</span>
+              <strong>Beauty</strong>
+              <span>platforma Crne Gore</span>
             </div>
           </div>
           <div class="hero__deco hero__deco--1"></div>
@@ -92,212 +80,100 @@
       </div>
     </section>
 
-    <!-- ============ CATEGORIES ============ -->
-    <section class="section section--alt">
+    <!-- ============ EXPLORER (filters + salon grid) ============ -->
+    <section class="explorer" id="explorer">
       <div class="container">
-        <div class="section__header">
-          <div>
-            <span class="section__eyebrow">Kategorije</span>
-            <h2 class="section__title">Pretraži po <em>tipu tretmana</em></h2>
-            <p class="section__subtitle">Od frizera do estetskih tretmana — sve na jednom mjestu.</p>
+
+        <div class="explorer__header">
+          <div class="explorer__heading">
+            <span class="eyebrow">Naša kolekcija</span>
+            <h2>Pronađi <em>svoj salon</em></h2>
+            <p>Filtriraj po gradu, kategoriji i ocjeni.</p>
           </div>
-          <a href="/kategorije" class="section__link">Sve kategorije →</a>
-        </div>
-
-        <div class="categories">
-          <a href="/kategorija/frizerski-saloni" class="cat-card">
-            <img class="cat-card__img" src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&q=80&auto=format&fit=crop" alt="Frizerski saloni" />
-            <div class="cat-card__overlay"></div>
-            <div class="cat-card__body">
-              <h3 class="cat-card__name">Frizerski</h3>
-              <p class="cat-card__desc">Šišanje · farbanje · styling</p>
-              <span class="cat-card__count">18 salona →</span>
-            </div>
-          </a>
-
-          <a href="/kategorija/kozmeticki-saloni" class="cat-card">
-            <img class="cat-card__img" src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80&auto=format&fit=crop" alt="Kozmetički saloni" />
-            <div class="cat-card__overlay"></div>
-            <div class="cat-card__body">
-              <h3 class="cat-card__name">Kozmetički</h3>
-              <p class="cat-card__desc">Lice · manikir · depilacija</p>
-              <span class="cat-card__count">22 salona →</span>
-            </div>
-          </a>
-
-          <a href="/kategorija/estetski-tretmani" class="cat-card">
-            <img class="cat-card__img" src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600&q=80&auto=format&fit=crop" alt="Estetski tretmani" />
-            <div class="cat-card__overlay"></div>
-            <div class="cat-card__body">
-              <h3 class="cat-card__name">Estetski</h3>
-              <p class="cat-card__desc">PRP · HIFU · laser · mezo</p>
-              <span class="cat-card__count">9 salona →</span>
-            </div>
-          </a>
-
-          <a href="/kategorija/masaze-wellness" class="cat-card">
-            <img class="cat-card__img" src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&q=80&auto=format&fit=crop" alt="Masaže i wellness" />
-            <div class="cat-card__overlay"></div>
-            <div class="cat-card__body">
-              <h3 class="cat-card__name">Masaže & spa</h3>
-              <p class="cat-card__desc">Relax · sportske · ayurveda</p>
-              <span class="cat-card__count">11 salona →</span>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ FEATURED SALONS ============ -->
-    <section class="section">
-      <div class="container">
-        <div class="section__header">
-          <div>
-            <span class="section__eyebrow">Izdvojeno</span>
-            <h2 class="section__title">Najbolji <em>saloni mjeseca</em></h2>
-            <p class="section__subtitle">Verifikovani i preporučeni od redakcije.</p>
-          </div>
-          <a href="/saloni" class="section__link">Pogledaj sve →</a>
-        </div>
-
-        <div class="salons" id="featured-salons">
-          <a href="/salon/lumiere-aesthetics/" class="salon">
-            <div class="salon__image">
-              <img src="https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?w=700&q=80&auto=format&fit=crop" alt="Salon" />
-              <span class="salon__badge">★ Featured</span>
-              <span class="salon__heart">♡</span>
-            </div>
-            <div class="salon__body">
-              <div class="salon__meta">
-                <div class="salon__category">Estetski tretmani</div>
-                <div class="salon__rating">4.9 <span>(124)</span></div>
-              </div>
-              <h3 class="salon__name">Lumière Aesthetics</h3>
-              <div class="salon__location">Podgorica · Centar</div>
-              <div class="salon__services">
-                <span>HIFU</span>
-                <span>PRP</span>
-                <span>Mezo</span>
-              </div>
-              <div class="salon__footer">
-                <div class="salon__price">od <strong>€35</strong></div>
-                <button class="salon__phone-btn">Prikaži broj</button>
-              </div>
-            </div>
-          </a>
-
-          <article class="salon">
-            <div class="salon__image">
-              <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=700&q=80&auto=format&fit=crop" alt="Salon" />
-              <span class="salon__badge">★ Featured</span>
-              <span class="salon__heart">♡</span>
-            </div>
-            <div class="salon__body">
-              <div class="salon__meta">
-                <div class="salon__category">Frizerski salon</div>
-                <div class="salon__rating">4.8 <span>(87)</span></div>
-              </div>
-              <h3 class="salon__name">Bella Studio</h3>
-              <div class="salon__location">Budva · Stari grad</div>
-              <div class="salon__services">
-                <span>Šišanje</span>
-                <span>Farbanje</span>
-                <span>Keratin</span>
-              </div>
-              <div class="salon__footer">
-                <div class="salon__price">od <strong>€15</strong></div>
-                <button class="salon__phone-btn">Prikaži broj</button>
-              </div>
-            </div>
-          </article>
-
-          <article class="salon">
-            <div class="salon__image">
-              <img src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=700&q=80&auto=format&fit=crop" alt="Salon" />
-              <span class="salon__badge salon__badge--new">Novo</span>
-              <span class="salon__heart">♡</span>
-            </div>
-            <div class="salon__body">
-              <div class="salon__meta">
-                <div class="salon__category">Kozmetički salon</div>
-                <div class="salon__rating">5.0 <span>(42)</span></div>
-              </div>
-              <h3 class="salon__name">Rose & Co.</h3>
-              <div class="salon__location">Tivat · Porto Montenegro</div>
-              <div class="salon__services">
-                <span>Manikir</span>
-                <span>Pedikir</span>
-                <span>Tretman lica</span>
-              </div>
-              <div class="salon__footer">
-                <div class="salon__price">od <strong>€20</strong></div>
-                <button class="salon__phone-btn">Prikaži broj</button>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ INSPIRATION GRID ============ -->
-    <section class="section">
-      <div class="container">
-        <div class="section__header section__header--center">
-          <div>
-            <span class="section__eyebrow">Inspiracija</span>
-            <h2 class="section__title">Pronađi svoj <em>look</em></h2>
-            <p class="section__subtitle">Najnoviji tretmani iz salona širom Crne Gore.</p>
+          <div class="explorer__count" id="result-count">
+            <strong>—</strong><span>salona dostupno</span>
           </div>
         </div>
 
-        <div class="inspiration">
-          <a href="#" class="insp insp--1">
-            <img src="https://images.unsplash.com/photo-1596704017254-9b121068fb31?w=500&q=80&auto=format&fit=crop" alt="" />
-            <span class="insp__tag">Makeup</span>
-          </a>
-          <a href="#" class="insp insp--2">
-            <img src="https://images.unsplash.com/photo-1610992015732-2449b76344bc?w=400&q=80&auto=format&fit=crop" alt="" />
-            <span class="insp__tag">Nokti</span>
-          </a>
-          <a href="#" class="insp insp--3">
-            <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=700&q=80&auto=format&fit=crop" alt="" />
-            <span class="insp__tag">Tretman lica</span>
-          </a>
-          <a href="#" class="insp insp--4">
-            <img src="https://images.unsplash.com/photo-1559599101-f09722fb4948?w=400&q=80&auto=format&fit=crop" alt="" />
-            <span class="insp__tag">Estetika</span>
-          </a>
-          <a href="#" class="insp insp--5">
-            <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=500&q=80&auto=format&fit=crop" alt="" />
-            <span class="insp__tag">Wellness</span>
-          </a>
+        <div class="filters">
+          <div class="filter-chips" id="category-chips">
+            <button class="chip chip--active" data-category="">Sve kategorije</button>
+            <button class="chip" data-category="frizerski-saloni">✂ Frizerski</button>
+            <button class="chip" data-category="kozmeticki-saloni">✦ Kozmetički</button>
+            <button class="chip" data-category="estetski-tretmani">◈ Estetski</button>
+            <button class="chip" data-category="masaze-wellness">❋ Masaže & wellness</button>
+          </div>
+
+          <div class="filter-select">
+            <select id="city-select" aria-label="Grad">
+              <option value="">Sve gradove</option>
+              <option value="podgorica">Podgorica</option>
+              <option value="budva">Budva</option>
+              <option value="bar">Bar</option>
+              <option value="kotor">Kotor</option>
+              <option value="tivat">Tivat</option>
+              <option value="herceg-novi">Herceg Novi</option>
+              <option value="niksic">Nikšić</option>
+              <option value="cetinje">Cetinje</option>
+              <option value="ulcinj">Ulcinj</option>
+            </select>
+          </div>
+
+          <div class="filter-select">
+            <select id="sort-select" aria-label="Sortiraj">
+              <option value="featured">Izdvojeni prvo</option>
+              <option value="rating">Najbolja ocjena</option>
+              <option value="newest">Najnovije</option>
+            </select>
+          </div>
         </div>
+
+        <div class="salons" id="salons-grid">
+          <div class="salons__loading">Učitavam salone…</div>
+        </div>
+
+        <div class="load-more" id="load-more" hidden>
+          <button class="load-more__btn">Učitaj još salona</button>
+        </div>
+
       </div>
     </section>
 
     <!-- ============ WHY US ============ -->
     <section class="section section--alt">
       <div class="container">
+        <div class="section__header section__header--center">
+          <div>
+            <span class="eyebrow">Zašto tretmani.me</span>
+            <h2 class="section__title">Standard <em>nove generacije</em></h2>
+            <p class="section__subtitle" style="margin: 0 auto;">Kompletan vodič kroz beauty industriju u Crnoj Gori.</p>
+          </div>
+        </div>
+
         <div class="why">
           <div class="why__step">
+            <span class="why__num">01</span>
             <div class="why__icon">✓</div>
             <h3 class="why__title">Verifikovano</h3>
-            <p class="why__desc">Svaki salon je provjeren prije listanja na sajtu.</p>
+            <p class="why__desc">Svaki salon prolazi ručnu provjeru prije listanja.</p>
           </div>
           <div class="why__step">
+            <span class="why__num">02</span>
             <div class="why__icon">◌</div>
-            <h3 class="why__title">Bez registracije</h3>
-            <p class="why__desc">Pozoveš direktno — nema apsova ni kreiranja naloga.</p>
+            <h3 class="why__title">Direktan kontakt</h3>
+            <p class="why__desc">Bez registracije, bez aplikacija — pozoveš jednim klikom.</p>
           </div>
           <div class="why__step">
+            <span class="why__num">03</span>
             <div class="why__icon">✦</div>
-            <h3 class="why__title">Cijela CG</h3>
-            <p class="why__desc">Od Podgorice do Herceg Novog — 12 gradova.</p>
+            <h3 class="why__title">Cijela Crna Gora</h3>
+            <p class="why__desc">Od Podgorice do Herceg Novog — 12 gradova, sve kategorije.</p>
           </div>
           <div class="why__step">
+            <span class="why__num">04</span>
             <div class="why__icon">♡</div>
-            <h3 class="why__title">Iskreni reviewi</h3>
-            <p class="why__desc">Recenzije od ljudi koji su zaista bili na tretmanu.</p>
+            <h3 class="why__title">Iskreni recenzije</h3>
+            <p class="why__desc">Ocjene od ljudi koji su zaista bili na tretmanu.</p>
           </div>
         </div>
       </div>
@@ -308,18 +184,18 @@
       <div class="container">
         <div class="cta-salons">
           <div class="cta-salons__visual">
-            <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=700&q=80&auto=format&fit=crop" alt="" />
+            <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=900&q=80&auto=format&fit=crop" alt="" />
           </div>
           <div class="cta-salons__content">
             <div class="cta-salons__eyebrow">Za vlasnike salona</div>
-            <h2 class="cta-salons__title">Dovedi <em>nove klijente</em> već ovog mjeseca.</h2>
+            <h2 class="cta-salons__title">Tvoj salon zaslužuje <em>vrhunsku prezentaciju</em>.</h2>
             <p class="cta-salons__desc">
-              Listanje tvog salona u verifikovanom direktoriju. Mjesečni izvještaj o broju pregleda i poziva. Bez ugovora, bez provizije.
+              Listanje uz najbolje salone Crne Gore. Profesionalne fotografije, mjesečni izvještaj o pregledima i pozivima.
             </p>
             <ul class="cta-salons__perks">
-              <li>✓ Profesionalne fotografije uključene</li>
-              <li>✓ Mjesečni izvještaj o pregledima i pozivima</li>
-              <li>✓ Otkaži kad god želiš — bez ugovora</li>
+              <li>Profesionalna fotografija uključena</li>
+              <li>Mjesečni izvještaj o pregledima i pozivima</li>
+              <li>Bez ugovora, bez provizije po klijentu</li>
             </ul>
             <a href="/za-salone" class="cta-salons__btn">Saznaj više →</a>
           </div>
@@ -336,7 +212,7 @@
           <a href="/" class="logo">
             tretmani<span class="logo__dot">.</span><span class="logo__suffix">ME</span>
           </a>
-          <p>Direktorij vrhunskih salona u Crnoj Gori. Pronađi pravo mjesto za sebe.</p>
+          <p>Svi saloni Crne Gore na jednom mjestu. Pronađi pravo mjesto za sebe.</p>
           <div class="footer__social">
             <a href="#" aria-label="Instagram">IG</a>
             <a href="#" aria-label="Facebook">FB</a>
@@ -374,7 +250,7 @@
       </div>
       <div class="footer__bottom">
         <span>© 2026 tretmani.me · Sva prava zadržana</span>
-        <span>Crna Gora</span>
+        <span>Crna Gora · ME</span>
       </div>
     </div>
   </footer>

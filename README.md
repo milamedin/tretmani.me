@@ -1,6 +1,6 @@
 # tretmani.me
 
-Direktorij salona i estetskih tretmana u Crnoj Gori.
+Svi saloni i estetski tretmani Crne Gore na jednom mjestu.
 
 ## Stack
 - **Frontend:** Vanilla HTML/CSS/JS na Cloudflare Pages (git deploy)

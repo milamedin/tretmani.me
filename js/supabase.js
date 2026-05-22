@@ -37,6 +37,31 @@
       return sbGet(`public_salons?is_featured=eq.true&order=rating.desc&limit=${limit}`);
     },
 
+    async salons({ category = '', city = '', sort = 'featured', limit = 24 } = {}) {
+      const params = [`limit=${limit}`];
+      if (category) params.push(`category_slug=eq.${encodeURIComponent(category)}`);
+      if (city) params.push(`city_slug=eq.${encodeURIComponent(city)}`);
+      switch (sort) {
+        case 'rating':  params.push('order=rating.desc,review_count.desc'); break;
+        case 'newest':  params.push('order=id.desc'); break;
+        case 'featured':
+        default:        params.push('order=is_featured.desc,rating.desc'); break;
+      }
+      return sbGet(`public_salons?${params.join('&')}`);
+    },
+
+    async salonCount({ category = '', city = '' } = {}) {
+      const params = ['select=id'];
+      if (category) params.push(`category_slug=eq.${encodeURIComponent(category)}`);
+      if (city) params.push(`city_slug=eq.${encodeURIComponent(city)}`);
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/public_salons?${params.join('&')}`, {
+        headers: { ...baseHeaders, 'Prefer': 'count=exact', 'Range': '0-0' }
+      });
+      const range = res.headers.get('content-range') || '*/0';
+      const total = parseInt(range.split('/')[1] || '0', 10);
+      return Number.isFinite(total) ? total : 0;
+    },
+
     async salonsByCity(citySlug, limit = 50) {
       return sbGet(`public_salons?city_slug=eq.${encodeURIComponent(citySlug)}&order=is_featured.desc,rating.desc&limit=${limit}`);
     },

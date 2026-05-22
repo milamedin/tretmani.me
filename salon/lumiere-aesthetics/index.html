@@ -103,24 +103,33 @@
       </section>
 
       <!-- ============ GALLERY (10 photos) ============ -->
-      <section class="gallery" aria-label="Galerija">
-        <a href="#" class="gallery__item gallery__item--main">
-          <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=1200&q=80&auto=format&fit=crop" alt="Lumière Aesthetics — glavna fotografija" />
-        </a>
-        <a href="#" class="gallery__item">
-          <img src="https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?w=600&q=80&auto=format&fit=crop" alt="" />
-        </a>
-        <a href="#" class="gallery__item">
-          <img src="https://images.unsplash.com/photo-1559599101-f09722fb4948?w=600&q=80&auto=format&fit=crop" alt="" />
-        </a>
-        <a href="#" class="gallery__item">
-          <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80&auto=format&fit=crop" alt="" />
-        </a>
-        <a href="#" class="gallery__item">
-          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80&auto=format&fit=crop" alt="" />
-          <button class="gallery__more">⊞ Sve fotografije (10)</button>
-        </a>
+      <section class="gallery" aria-label="Galerija" id="gallery">
+        <button type="button" class="gallery__item gallery__item--main" data-gallery-index="0">
+          <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=1600&q=85&auto=format&fit=crop" alt="Lumière Aesthetics — glavna fotografija" />
+        </button>
+        <button type="button" class="gallery__item" data-gallery-index="1">
+          <img src="https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?w=800&q=85&auto=format&fit=crop" alt="Salon interijer" />
+        </button>
+        <button type="button" class="gallery__item" data-gallery-index="2">
+          <img src="https://images.unsplash.com/photo-1559599101-f09722fb4948?w=800&q=85&auto=format&fit=crop" alt="Tretman lica" />
+        </button>
+        <button type="button" class="gallery__item" data-gallery-index="3">
+          <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=85&auto=format&fit=crop" alt="Estetski tretman" />
+        </button>
+        <button type="button" class="gallery__item" data-gallery-index="4">
+          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=85&auto=format&fit=crop" alt="Salon detalj" />
+          <span class="gallery__more">⊞ Sve fotografije (10)</span>
+        </button>
       </section>
+
+      <!-- Hidden additional photos for lightbox (indices 5-9) -->
+      <div id="gallery-extra" hidden>
+        <img data-gallery-index="5" src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1600&q=85&auto=format&fit=crop" alt="Lumière — detalj 6" />
+        <img data-gallery-index="6" src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=1600&q=85&auto=format&fit=crop" alt="Lumière — detalj 7" />
+        <img data-gallery-index="7" src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1600&q=85&auto=format&fit=crop" alt="Lumière — detalj 8" />
+        <img data-gallery-index="8" src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=1600&q=85&auto=format&fit=crop" alt="Lumière — detalj 9" />
+        <img data-gallery-index="9" src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=1600&q=85&auto=format&fit=crop" alt="Lumière — detalj 10" />
+      </div>
 
       <!-- ============ LAYOUT ============ -->
       <div class="salon-layout">
@@ -462,7 +471,7 @@
           <a href="/" class="logo">
             tretmani<span class="logo__dot">.</span><span class="logo__suffix">ME</span>
           </a>
-          <p>Direktorij vrhunskih salona u Crnoj Gori. Pronađi pravo mjesto za sebe.</p>
+          <p>Svi saloni Crne Gore na jednom mjestu. Pronađi pravo mjesto za sebe.</p>
         </div>
         <div class="footer__col">
           <h4>Kategorije</h4>
@@ -499,11 +508,89 @@
     </div>
   </footer>
 
+  <!-- ============ LIGHTBOX ============ -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Galerija">
+    <div class="lightbox__inner">
+      <div class="lightbox__image-wrap">
+        <img class="lightbox__img" id="lightbox-img" src="" alt="" />
+      </div>
+      <button class="lightbox__nav lightbox__nav--prev" id="lightbox-prev" aria-label="Prethodna">‹</button>
+      <button class="lightbox__nav lightbox__nav--next" id="lightbox-next" aria-label="Sljedeća">›</button>
+      <button class="lightbox__close" id="lightbox-close" aria-label="Zatvori">✕</button>
+      <div class="lightbox__counter" id="lightbox-counter">1 / 10</div>
+    </div>
+  </div>
+
   <script>
     document.getElementById('phone-reveal')?.addEventListener('click', (e) => {
       e.currentTarget.textContent = '📞 +382 67 123 456';
       e.currentTarget.style.cursor = 'default';
     });
+
+    // ===== LIGHTBOX =====
+    (function () {
+      const galleryItems = document.querySelectorAll('#gallery [data-gallery-index]');
+      const extraItems = document.querySelectorAll('#gallery-extra [data-gallery-index]');
+      const allSources = [];
+      [...galleryItems, ...extraItems].forEach(el => {
+        const idx = parseInt(el.dataset.galleryIndex, 10);
+        const img = el.tagName === 'IMG' ? el : el.querySelector('img');
+        if (img) allSources[idx] = { src: img.src, alt: img.alt || '' };
+      });
+
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lightbox-img');
+      const lbCounter = document.getElementById('lightbox-counter');
+      const btnPrev = document.getElementById('lightbox-prev');
+      const btnNext = document.getElementById('lightbox-next');
+      const btnClose = document.getElementById('lightbox-close');
+
+      let current = 0;
+
+      function show(idx) {
+        if (idx < 0 || idx >= allSources.length) return;
+        current = idx;
+        const item = allSources[idx];
+        lbImg.src = item.src;
+        lbImg.alt = item.alt;
+        lbCounter.textContent = `${idx + 1} / ${allSources.length}`;
+        btnPrev.disabled = idx === 0;
+        btnNext.disabled = idx === allSources.length - 1;
+      }
+
+      function open(idx) {
+        show(idx);
+        lb.classList.add('lightbox--open');
+        document.body.classList.add('lightbox-open');
+      }
+
+      function close() {
+        lb.classList.remove('lightbox--open');
+        document.body.classList.remove('lightbox-open');
+      }
+
+      galleryItems.forEach(el => {
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          open(parseInt(el.dataset.galleryIndex, 10));
+        });
+      });
+
+      btnPrev.addEventListener('click', () => show(current - 1));
+      btnNext.addEventListener('click', () => show(current + 1));
+      btnClose.addEventListener('click', close);
+
+      lb.addEventListener('click', (e) => {
+        if (e.target === lb || e.target.classList.contains('lightbox__inner') || e.target.classList.contains('lightbox__image-wrap')) close();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (!lb.classList.contains('lightbox--open')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowLeft') show(current - 1);
+        if (e.key === 'ArrowRight') show(current + 1);
+      });
+    })();
   </script>
 </body>
 </html>
